@@ -9,7 +9,4 @@ module.exports = () => {
         .into(app);
 
     return app;
-
-    // teste
-
 }
