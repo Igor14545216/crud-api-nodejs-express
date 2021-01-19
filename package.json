@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/Igor14545216/curso-node/issues"
   },
-  "homepage": "https://github.com/Igor14545216/curso-node#readme"
+  "homepage": "https://github.com/Igor14545216/curso-node#readme",
+  "dependencies": {
+    "consign": "^0.1.6",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "save-dev": "0.0.1-security"
+  }
 }
