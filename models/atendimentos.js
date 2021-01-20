@@ -59,7 +59,7 @@ class Atendimento {
         })
 
     }
- 
+
     //retorna um único registro com condição
     buscaPorId(id, res) {
         const sql = `SELECT * FROM Atendimentos WHERE id=${id}`
@@ -69,6 +69,21 @@ class Atendimento {
                 res.status(400).json(erro);
             else
                 res.status(200).json(resultados[0]);
+        })
+    }
+
+    //altera buscando por id na rota
+    altera(id, valores, res) {
+        const sql = 'UPDATE Atendimentos SET ? WHERE id=?';
+
+        if (valores.data)
+            valores.data = moment(valores.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS');
+
+        conexao.query(sql, [valores, id], (erro, resultados) => {
+            if (erro)
+                res.status(400).json(erro);
+            else
+                res.status(200).json(resultados);
         })
     }
 }

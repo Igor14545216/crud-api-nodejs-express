@@ -10,9 +10,16 @@ module.exports = app => {
     });
 
     app.post('/atendimentos', (req, res) => {
-        const atendimento  = req.body;
+        const atendimento = req.body;
 
         Atendimento.adiciona(atendimento, res);
     });
+
+    app.patch('/atendimentos/:id', (req, res) => {
+        // const id = Number(req.params.id) // quando eu quiser pegar apenas um dos valores do body
+        const valores = req.body
+        Atendimento.altera(Number(req.params.id), valores, res);
+    })
+
 }
 
