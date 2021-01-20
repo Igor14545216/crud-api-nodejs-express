@@ -1,10 +1,11 @@
+const { response } = require('express')
 const moment = require('moment')
 const conexao = require('../infraestrutura/conexao')
 
 class Atendimento {
 
     // o que chegar de parametro do postman vou insrir dentro da tabela Atendimentos do meu banco
-    adiciona(atendimento) {
+    adiciona(atendimento, res) {
 
         const dataCriacao = moment().format('YYYY-MM-DD HH:MM:SS')
         const data = moment(atendimento.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS') //data que eu mando do postman
@@ -13,12 +14,11 @@ class Atendimento {
 
         conexao.query(sql, atendimentoDatado, (erro, resultados) => {
             if (erro)
-                console.log(erro);
+                res.status(400).json(erro);
             else
-                console.log(resultados)
+                res.status(201).json(resultados);
         })
     }
-
 }
 
 module.exports = new Atendimento
