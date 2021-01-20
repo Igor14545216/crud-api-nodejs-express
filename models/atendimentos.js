@@ -10,7 +10,7 @@ class Atendimento {
         const dataCriacao = moment().format('YYYY-MM-DD HH:MM:SS')
         const data = moment(atendimento.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS') //data que eu mando do postman
 
-        const dataEhValida = moment(data).isSameOrAfter(dataCriacao) //valida se a data é maior que a data de criacao
+        const dataEhValida = moment(data).isSameOrAfter(dataCriacao)
         const clienteEhValido = atendimento.cliente.length >= 3;
 
         const validacoes =
@@ -45,6 +45,31 @@ class Atendimento {
                     res.status(201).json(resultados);
             })
         }
+    }
+
+    //retorna dados da tabela
+    lista(res) {
+        const sql = 'SELECT * FROM Atendimentos'
+
+        conexao.query(sql, (erro, resultados) => {
+            if (erro)
+                res.status(400).json(erro);
+            else
+                res.status(200).json(resultados);
+        })
+
+    }
+ 
+    //retorna um único registro com condição
+    buscaPorId(id, res) {
+        const sql = `SELECT * FROM Atendimentos WHERE id=${id}`
+
+        conexao.query(sql, (erro, resultados) => {
+            if (erro)
+                res.status(400).json(erro);
+            else
+                res.status(200).json(resultados[0]);
+        })
     }
 }
 
