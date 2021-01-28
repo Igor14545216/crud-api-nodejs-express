@@ -1,5 +1,5 @@
-# curso-node
-Curso nodejs 
+
+
 deve-se rodar os seguintes scripts para que o projeto funcione corretamente
 
 npm install express /*biblioteca do express*/
